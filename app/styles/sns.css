@@ -1,0 +1,128 @@
+.sns-row {
+    background: #EFEFEF;
+    padding: 30px 0;
+}
+
+.sns-container {
+    padding: 0;
+}
+
+/* Header */
+.sns-header {
+    margin-bottom: 30px;
+}
+
+.sns-header div.title {
+    position: relative;
+    padding: 0 15px;
+    background: #FFF;
+}
+
+.sns-header div.title > div {
+    height: 70px;
+    line-height: 70px;
+    padding: 0 15px;
+}
+
+.sns-nav-collapse {
+    position: absolute;
+    top: 17px;
+    right: 24px;
+    padding: 8px;
+    outline: none;
+}
+
+.sns-nav-collapse span.icon-bar {
+    display: block;
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+    margin-top: 3px;
+    background: #e85d5b;
+}
+
+.sns-nav-collapse span.icon-bar:last-child {
+    margin-bottom: 3px;
+}
+
+.sns-navbar-collapse {
+    padding: 0;
+    background: #FFF;
+}
+
+.sns-navbar-collapse ul.sns-navbar-nav {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0;
+}
+
+.sns-navbar-collapse ul.sns-navbar-nav li {
+    position: relative;
+    cursor: pointer;
+    padding: 5px 30px;
+    line-height: 30px;
+    border-bottom: 1px solid #EEE;
+}
+
+.sns-navbar-collapse ul.sns-navbar-nav li a {
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    -ms-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    color: #999;
+    font-weight: 100;
+}
+
+.sns-navbar-collapse ul.sns-navbar-nav li a:hover {
+    text-decoration: none;
+}
+
+.sns-navbar-collapse ul.sns-navbar-nav li span {
+    position: absolute;
+    right: 30px;
+    font-size: 9px;
+    color: #999;
+    line-height: 39px;
+
+}
+
+@media (min-width: 768px) {
+    .sns-header div.title {
+        width:auto;
+        float:left;
+    }
+    .sns-nav-collapse {
+        display: none;
+    }
+    .sns-navbar-collapse ul.sns-navbar-nav li {
+        border-bottom: none;
+    }
+    .sns-navbar-collapse ul.sns-navbar-nav li span {
+        display: none;
+    }
+    .sns-navbar-collapse ul.sns-navbar-nav {
+        float:right;
+    }
+    .sns-navbar-collapse ul.sns-navbar-nav li {
+        float:left;
+        padding: 0 30px;
+        display: inline;
+        line-height: 70px;
+    }
+}
+
+
+
+
+
+
+
+.sns-sidebar > div {
+    background: #DDD;
+}
+
+.sns-content > div {
+    background: #DDD;
+}
+

@@ -1,0 +1,74 @@
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+body {
+    padding: 0;
+    font-family: "Nanum Gothic", Verdana, Arial, sans-serif;
+}
+
+.navbar {
+    border-radius: 0;
+    margin-bottom: 0;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.full-container {
+    padding-top: 50px;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.footer {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 10px;
+    color: #777;
+    border-top: 1px solid #e5e5e5;
+}
+
+.container-narrow > hr {
+    margin: 30px 0;
+}
+
+.jumbotron {
+    text-align: center;
+}
+
+/* Main Styles */
+
+
+
+
+.skill {
+    background: #EEE;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+.skill .container h4 {
+    color: #ff3e00;
+}
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 1900px;
+    }
+
+    /* Remove the padding we set earlier */
+    .header,
+    .footer {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
