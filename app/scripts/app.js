@@ -36,6 +36,11 @@ angular
                 controller: 'SnsCtrl',
                 controllerAs: 'sns'
             })
+            .when('/blog', {
+                templateUrl: 'views/blog.html',
+                controller: 'BlogCtrl',
+                controllerAs: 'blog'
+            })
             .otherwise({
                 redirectTo: '/'
             });

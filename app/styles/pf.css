@@ -1,0 +1,30 @@
+a {
+    color:#666;
+    outline: none;
+    text-decoration: none;
+}
+
+a:hover, a:focus {
+    color:#666;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pf-home {
+    position: fixed;
+    z-index: 10;
+    top: 50px;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    text-decoration: none;
+    font-size: 20px;
+    padding: 15px;
+    color: #FFF;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.pf-home:hover {
+    color: #FFF;
+    cursor: pointer;
+}

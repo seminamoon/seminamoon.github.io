@@ -1,35 +1,130 @@
-<div class="sns-row">
-    <div class="container sns-container">
+<a class="pf-home" href="#/">
+    <span class="glyphicon glyphicon-home"></span>
+</a>
 
-        <div id="header" class="sns-header col-md-12">
-            <div class="title">
-                <a type="button" class="sns-nav-collapse" data-toggle="collapse" data-target="#sns-navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <div>Header</div>
-            </div>
 
-            <div class="collapse navbar-collapse sns-navbar-collapse" id="sns-navbar-collapse">
-                <ul class="sns-navbar-nav">
-                    <li class="active"><a>Home</a><span class="glyphicon glyphicon-menu-right"></span></li>
-                    <li><a>About</a><span class="glyphicon glyphicon-menu-right"></span></li>
-                    <li><a>Sns</a><span class="glyphicon glyphicon-menu-right"></span></li>
-                    <li><a>Contact</a><span class="glyphicon glyphicon-menu-right"></span></li>
+<div class="sns-bg">
+    <div class="sns-nav-bar">
+        <div class="container">
+            <a class="sns-home" href="#/sns"><span class="glyphicon glyphicon-grain"></span></a>
+            <div class="sns-nav-list">
+                <ul>
+                    <li class="sns-item"><a><span class="glyphicon glyphicon-user"></span></a></li>
+                    <li class="sns-item"><a><span class="glyphicon glyphicon-envelope"></span></a></li>
+                    <li class="sns-item"><a><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li class="sns-item"><a><span class="glyphicon glyphicon-pencil"></span></a></li>
+                    <li class="sns-item"><a><span class="glyphicon glyphicon-cog"></span></a></li>
                 </ul>
             </div>
+            <div class="sns-search">
+                <span class="glyphicon glyphicon-search" ng-click="searchClick()"></span>
+                <input ng-model="searchKeyword" class="sns-search-keyword" type="search" placeholder="search">
+                <a class="sns-keyword-remove" ng-show="searchKeyword && searchBar" ng-click="searchKeyword=''">✕</a>
+            </div>
         </div>
+    </div>
 
+    <div class="container sns-container">
 
-        <div class="sns-sidebar col-md-4">
-            <div>sidebar</div>
+        <!-- Sidebar -->
+        <div class="sns-sidebar col-md-3">
+
+            <div class="my-profile">
+                <div class="my-info">
+                    <a class="bg-change-btn" ng-click="targetBg = !targetBg"><span
+                            class="glyphicon glyphicon-camera"></span></a>
+                    <div class="bg-img-input" ng-if="targetBg">
+                        <span class="glyphicon glyphicon-triangle-top"></span>
+                        <div class="fileUpload btn">
+                            <span>Upload</span>
+                            <input type="file" class="upload"
+                                   onchange="angular.element(this).scope().changeIma(this , 'my-info')"/>
+                        </div>
+                    </div>
+
+                    <div class="my-photo">
+                        <a class="photo-change-btn" ng-click="targetPhoto = !targetPhoto"><span
+                                class="glyphicon glyphicon-camera"></span></a>
+                        <div class="photo-img-input" ng-if="targetPhoto">
+                            <span class="glyphicon glyphicon-triangle-top"></span>
+                            <div class="fileUpload btn">
+                                <span>Upload</span>
+                                <input type="file" class="upload"
+                                       onchange="angular.element(this).scope().changeIma(this , 'my-photo')"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div id="name">Semjok</div>
+                        <div id="email">m.semjok@gmail.com</div>
+                    </div>
+                </div>
+
+                <div class="my-record">
+                    <ul>
+                        <li>
+                            <div>Post</div>
+                            <div>9</div>
+                        </li>
+                        <li>
+                            <div>Flower</div>
+                            <div>33</div>
+                        </li>
+                        <li>
+                            <div>Flowing</div>
+                            <div>29</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="simple-write">
+                <div class="title">
+                    <span class="glyphicon glyphicon-leaf"></span> 소식을 전하시겠습니까?
+                    <a class="simple-write-control" ng-if="controlOn" ng-click="closeSimpleWrite()">▾</a>
+                    <a class="simple-write-control" ng-if="!controlOn" ng-click="closeSimpleWrite()">‣</a>
+                </div>
+                <div class="simple-write-content">
+                    <textarea class="form-control"></textarea>
+                    <div>
+                        <ul class="write-item">
+                            <li><a><span class="glyphicon glyphicon-picture"></span></a></li>
+                            <li><a><span class="glyphicon glyphicon-facetime-video"></span></a></li>
+                            <li><a><span class="glyphicon glyphicon-user"></span></a></li>
+                            <li><a><span class="glyphicon glyphicon-map-marker"></span></a></li>
+                            <li><a><span class="glyphicon glyphicon-ok"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sideNav">
+                <ul>
+                    <li>
+                        <a><span class="glyphicon glyphicon-bookmark"></span> Bookmark</a>
+                        <span>2</span>
+                    </li>
+                    <li>
+                        <a><span class="glyphicon glyphicon-thumbs-up"></span> Likes</a>
+                        <span>12</span>
+                    </li>
+                    <li>
+                        <a><span class="glyphicon glyphicon-pushpin"></span> Pin</a>
+                        <span>4</span>
+                    </li>
+                    <li>
+                        <a><span class="glyphicon glyphicon-calendar"></span> Event</a>
+                        <span>1</span>
+                    </li>
+                    <li>
+                        <a><span class="glyphicon glyphicon-user glyphicon-user"></span> Friend</a>
+                        <span>3</span>
+                    </li>
+                </ul>
+            </div>
+
         </div>
-
-        <div class="sns-content col-md-8">
-            <div>content</div>
-        </div>
-
+        <!-- //. Sidebar -->
 
     </div>
 </div>
