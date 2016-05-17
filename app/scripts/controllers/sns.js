@@ -43,8 +43,6 @@ angular.module('portfolioApp')
         $scope.closeSimpleWrite = function(){
             $scope.controlOn = !$scope.controlOn;
             $('.simple-write-content').animate({height: 'toggle'});
-        }
-
-
+        };
 
     });

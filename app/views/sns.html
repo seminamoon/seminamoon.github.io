@@ -25,7 +25,6 @@
     </div>
 
     <div class="container sns-container">
-
         <!-- Sidebar -->
         <div class="sns-sidebar col-md-3">
 
@@ -63,16 +62,16 @@
                 <div class="my-record">
                     <ul>
                         <li>
-                            <div>Post</div>
+                            <div>Posts</div>
                             <div>9</div>
                         </li>
                         <li>
-                            <div>Flower</div>
+                            <div>Follow</div>
                             <div>33</div>
                         </li>
                         <li>
-                            <div>Flowing</div>
-                            <div>29</div>
+                            <div>Following</div>
+                            <div>21</div>
                         </li>
                     </ul>
                 </div>
@@ -85,14 +84,16 @@
                     <a class="simple-write-control" ng-if="!controlOn" ng-click="closeSimpleWrite()">‣</a>
                 </div>
                 <div class="simple-write-content">
-                    <textarea class="form-control"></textarea>
+                    <textarea ng-model="postContent" class="form-control"></textarea>
                     <div>
                         <ul class="write-item">
                             <li><a><span class="glyphicon glyphicon-picture"></span></a></li>
                             <li><a><span class="glyphicon glyphicon-facetime-video"></span></a></li>
                             <li><a><span class="glyphicon glyphicon-user"></span></a></li>
                             <li><a><span class="glyphicon glyphicon-map-marker"></span></a></li>
-                            <li><a><span class="glyphicon glyphicon-ok"></span></a></li>
+                            <li class="sendBtn"><a
+                                    ng-style="{'background' : postContent.length > 0? '#7ACCBE' : '#DDD' }"><span
+                                    class="glyphicon glyphicon-ok"></span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -123,8 +124,145 @@
                 </ul>
             </div>
 
+            <div class="recommend">
+                Recommend <a class="repeat-list"><span class="glyphicon glyphicon-repeat"></span></a>
+                <ul>
+                    <li>
+                        <div class="photo" style="background-image: url('images/images.jpg')"></div>
+                        <div class="content">
+                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
+                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
+                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
+                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
+                            </div>
+                        </div>
+                        <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
+                    </li>
+
+                    <li>
+                        <div class="photo" style="background-image: url('images/imgres.jpg')"></div>
+                        <div class="content">
+                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
+                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
+                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
+                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
+                            </div>
+                        </div>
+                        <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
+                    </li>
+
+                    <li>
+                        <div class="photo" style="background-image: url('images/images-1.jpg')"></div>
+                        <div class="content">
+                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
+                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
+                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
+                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
+                            </div>
+                        </div>
+                        <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="popularity">
+                Popularity <a class="repeat-list"><span class="glyphicon glyphicon-repeat"></span></a>
+
+
+                <div id="popularCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <li data-target="#popularCarousel" data-slide-to="0" class="active"></li>
+                        <li data-target="#popularCarousel" data-slide-to="1"></li>
+                        <li data-target="#popularCarousel" data-slide-to="2"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img src="images/IMG_7882.jpg" alt="IMG_7882">
+                            <div class="title">
+                                <div>
+                                    Lorem ipsum dolor sit amet, has tollit equidem an. Natum putent eloquentiam ut pri,
+                                    ius feugait detraxit ea, ut vel summo luptatum. Ne facer mentitum ius, exerci
+                                    liberavisse ne nec, cum quem quot impedit id. Libris noster nominati ei quo. Accusam
+                                    consequuntur vix no, nam velit denique singulis no. Altera interesset liberavisse
+                                    nam in.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG_8271.jpg" alt="IMG_8271">
+                            <div class="title">
+                                <div>
+                                    Lorem ipsum dolor sit amet, has tollit equidem an. Natum putent eloquentiam ut pri,
+                                    ius feugait detraxit ea, ut vel summo luptatum. Ne facer mentitum ius, exerci
+                                    liberavisse ne nec, cum quem quot impedit id. Libris noster nominati ei quo. Accusam
+                                    consequuntur vix no, nam velit denique singulis no. Altera interesset liberavisse
+                                    nam in.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <img src="images/IMG_8381.jpg" alt="IMG_8381">
+                            <div class="title">
+                                <div>
+                                    Lorem ipsum dolor sit amet, has tollit equidem an.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!-- //. Sidebar -->
+
+        <!-- Content -->
+        <div class="sns-center col-md-6">
+            <div class="posts">
+                <ul>
+                    <li class="col-md-6">
+                        <div>
+                            <img src="images/FullSizeRender 10.jpg">
+                            <div class="title">Lorem ipsum dolor sit amet
+                            </div>
+                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-6">
+                        <div>
+                            <img src="images/IMG_6163.jpg">
+                            <div class="title">Lorem ipsum dolor sit amet</div>
+                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-6">
+                        <div>
+                            <img src="images/IMG_3265.jpg">
+                            <div class="title">Lorem ipsum dolor sit amet</div>
+                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
+                            </div>
+                        </div>
+                    </li>
+                    <li class="col-md-6">
+                        <div>
+                            <img src="images/IMG_0105.jpg">
+                            <div class="title">Lorem ipsum dolor sit amet</div>
+                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+
+        </div>
+        <!-- //. Content -->
+
 
     </div>
 </div>

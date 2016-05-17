@@ -95,8 +95,11 @@
     margin-top: 40px;
 }
 
+/* Left */
+
 .sns-sidebar {
     padding: 0;
+    /*display: none;*/
 }
 
 .sns-sidebar .my-profile {
@@ -273,7 +276,7 @@
 
 .sns-sidebar .simple-write {
     margin-top: 15px;
-    padding: 15px ;
+    padding: 15px;
     background: #FFF;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
@@ -312,7 +315,7 @@
 
 .sns-sidebar .simple-write ul.write-item {
     list-style: none;
-    padding:10px 0 0 0;
+    padding: 10px 0 0 0;
 }
 
 .sns-sidebar .simple-write ul.write-item li {
@@ -324,21 +327,21 @@
 }
 
 .sns-sidebar .simple-write ul.write-item li:last-child {
-    float:right;
-    width:60px;
+    float: right;
+    width: 60px;
 }
 
-.sns-sidebar .simple-write ul.write-item li:last-child a {
+.sns-sidebar .simple-write ul.write-item li.sendBtn a {
     display: block;
     width: 60px;
     border-radius: 3px;
-    background: #7ACCBE;
+    background: #DDD;
     color: #FFF;
 }
 
 .sns-sidebar .sideNav {
     margin-top: 15px;
-    padding: 15px ;
+    padding: 15px;
     background: #FFF;
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
@@ -346,11 +349,11 @@
 .sns-sidebar .sideNav ul {
     padding: 0;
     margin-bottom: 0;
-    list-style : none;
+    list-style: none;
 }
 
 .sns-sidebar .sideNav ul li {
-    font-size:12px;
+    font-size: 12px;
     line-height: 24px;
 }
 
@@ -359,13 +362,176 @@
 }
 
 .sns-sidebar .sideNav ul li > span {
-    float:right;
-    color:#999;
+    float: right;
+    color: #999;
 }
 
+.recommend {
+    padding: 15px;
+    margin-top: 15px;
+    font-size: 12px;
+    color: #666;
+    background: #FFF;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
 
+.recommend ul {
+    list-style: none;
+    padding: 10px 0 0 0;
+}
 
+.recommend ul li {
+    height: 40px;
+    margin-bottom: 10px;
+}
 
+.recommend ul li div.photo {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
+    border: 2px solid #7ACCBE;
+    border-radius: 5px;
+    background-color: #FFF;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.recommend ul li div.content {
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    width: calc(100% - 100px);
+    line-height: 20px; /* fallback */
+    max-height: 48px; /* fallback */
+    -webkit-line-clamp: 2; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    margin-right: 5px;
+}
+
+.recommend ul li button {
+    float: left;
+    width: 50px;
+    height: 40px;
+    padding: 5px;
+    color: #7ACCBE;
+    background: none;
+    font-size: 10px;
+}
+
+.popularity {
+    font-size: 12px;
+    padding: 15px;
+    margin-top: 15px;
+    background: #FFF;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+a.repeat-list {
+    font-size: 10px;
+    float: right;
+    color: #999;
+}
+
+.popularity #popularCarousel {
+    margin-top: 10px;
+}
+
+.popularity ol.carousel-indicators {
+    bottom: 0;
+    left: calc(100% - 60px);
+    -webkit-left: calc(100% - 60px);
+    -moz-left: calc(100% - 60px);
+    right: 0;
+    width: 60px;
+    margin-left: 0;
+    text-align: left;
+}
+
+.popularity ol.carousel-indicators li {
+    width: 7px;
+    height: 7px;
+}
+
+.popularity #popularCarousel .carousel-inner .item {
+    height: 160px;
+}
+
+.popularity #popularCarousel .carousel-inner .item .title {
+    position: absolute;
+    z-index: 100;
+    padding: 20px 15px;
+    color: #FFF;
+    top: 0;
+    left: 0;
+    width: 50%;
+}
+
+.popularity #popularCarousel .carousel-inner .item .title > div {
+    /*font-size: 14px;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 18px; /* fallback */
+    max-height: 100%; /* fallback */
+    -webkit-line-clamp: 5; /* number of lines to show */
+    -webkit-box-orient: vertical;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Center */
+
+.sns-center {
+    padding: 0 15px;
+}
+
+.posts {
+    padding:0;
+}
+
+.posts > ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.posts > ul > li {
+    padding:0;
+}
+
+.posts > ul > li > div {
+    width: calc( 100% - 15px );
+    margin-right: 15px;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: #FFF;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.posts > ul > li > div > img {
+    width:100%;
+    height: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.posts > ul > li > div > .title {
+    padding-top: 8px;
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.posts > ul > li > div > .content {
+    padding-top: 8px;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #666;
+}
 
 
 
@@ -374,5 +540,12 @@
 @media (min-width: 768px) {
     .sns-nav-list {
         display: block;
+    }
+
+}
+
+@media (min-width: 992px) {
+    .sns-sidebar {
+        /*display: block;*/
     }
 }
