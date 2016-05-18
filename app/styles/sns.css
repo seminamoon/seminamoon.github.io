@@ -96,10 +96,9 @@
 }
 
 /* Left */
-
 .sns-sidebar {
     padding: 0;
-    /*display: none;*/
+    margin-bottom: 15px;
 }
 
 .sns-sidebar .my-profile {
@@ -487,51 +486,143 @@ a.repeat-list {
 }
 
 .posts {
-    padding:0;
+    padding: 0;
 }
 
-.posts > ul {
+.posts > ul.items {
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
-.posts > ul > li {
-    padding:0;
-}
-
-.posts > ul > li > div {
-    width: calc( 100% - 15px );
-    margin-right: 15px;
-    margin-bottom: 15px;
-    padding: 15px;
+.posts > ul.items > li.item {
     background: #FFF;
-    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    margin-bottom: 15px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
 }
 
-.posts > ul > li > div > img {
-    width:100%;
-    height: auto;
-    background-position: center;
+.posts > ul.items > li.item > div.image {
+    width: 100%;
+    height: 200px;
+    background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+}
+
+.posts > ul.items > li.item > div.image p {
+    display: none;
+}
+
+.posts > ul.items > li.item > div.content {
+    padding: 10px 15px 0 15px;
+    font-size: 12px;
+}
+
+.posts > ul.items > li.item > div.content .user-photo {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 10px;
+    border: 2px solid #7ACCBE;
+    border-radius: 5px;
+    background-color: #FFF;
     background-size: cover;
 }
-
-.posts > ul > li > div > .title {
-    padding-top: 8px;
-    font-size: 14px;
-    line-height: 16px;
-    font-weight: 500;
-    color: #333;
+.posts > ul.items > li.item > div.content .user-photo > p {
+    display: none;
 }
 
-.posts > ul > li > div > .content {
-    padding-top: 8px;
+.posts > ul.items > li.item > div.content > h5 {
+    line-height: 20px;
+    overflow: hidden;
+}
+
+.posts > ul.items > li.item > div.content > h5 > span {
+    font-size: 10px;
+    padding-left: 10px;
+    color: #999;
+}
+
+.posts > ul.items > li.item > div.content .text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    margin-bottom: 15px;
+    line-height: 18px; /* fallback */
+    max-height: 100%; /* fallback */
+    -webkit-line-clamp: 3; /* number of lines to show */
+    -webkit-box-orient: vertical;
+}
+
+.posts > ul.items > li.item > div.feed {
+    margin: 0 15px;
+    border-top: 1px solid #DDD;
+    background: #FFF;
+}
+
+.posts > ul.items > li.item > div.feed ul {
+    padding: 0;
+    display: inline-block;
+    width: calc( 100% - 65px );
+    -moz-width: calc( 100% - 65px );
+    -webkit-width: calc( 100% - 65px );
+    list-style: none;
+}
+
+.posts > ul.items > li.item > div.feed ul li {
+    display: inline-block;
+    font-size: 16px;
+    line-height: 34px;
+    margin-right: 2px;
+    text-align: left;
+}
+.posts > ul.items > li.item > div.feed ul li:last-child {
+    margin-right: 0;
+}
+
+.posts > ul.items > li.item > div.feed ul li a {
+    display: block;
+    height: 35px;
+    color: #999;
+    font-size:12px;
+    line-height: 35px;
+}
+
+.posts > ul.items > li.item > div.feed ul li a span.glyphicon {
+    top:1px;
+}
+
+.posts > ul.items > li.item > div.feed ul li a span.count {
     font-size: 12px;
-    line-height: 16px;
-    font-weight: 500;
-    color: #666;
+    padding-left: 5px;
 }
+
+.posts > ul.items > li.item > div.feed > a.moreBtn {
+    float:right;
+    display: inline-block;
+    font-size:12px;
+    width: 45px;
+    height: 37px;
+    text-align: right;
+    line-height: 33px;
+    color: #7ACCBE;
+}
+
+.posts > ul.items > li.item > div.feed a.moreBtn > span {
+    font-size: 10px;
+    top:2px;
+}
+
+
+
+
+
+
+
+
+
+
 
 
 

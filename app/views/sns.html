@@ -37,7 +37,7 @@
                         <div class="fileUpload btn">
                             <span>Upload</span>
                             <input type="file" class="upload"
-                                   onchange="angular.element(this).scope().changeIma(this , 'my-info')"/>
+                                   onchange="angular.element(this).scope().changeImg(this , 'my-info')"/>
                         </div>
                     </div>
 
@@ -128,7 +128,9 @@
                 Recommend <a class="repeat-list"><span class="glyphicon glyphicon-repeat"></span></a>
                 <ul>
                     <li>
-                        <div class="photo" style="background-image: url('images/images.jpg')"></div>
+                        <div class="photo" style="background-image: url('images/images.jpg')">
+                            <p>user profile image</p>
+                        </div>
                         <div class="content">
                             <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
                                 dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
@@ -140,7 +142,9 @@
                     </li>
 
                     <li>
-                        <div class="photo" style="background-image: url('images/imgres.jpg')"></div>
+                        <div class="photo" style="background-image: url('images/imgres.jpg')">
+                            <p>user profile image</p>
+                        </div>
                         <div class="content">
                             <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
                                 dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
@@ -152,7 +156,9 @@
                     </li>
 
                     <li>
-                        <div class="photo" style="background-image: url('images/images-1.jpg')"></div>
+                        <div class="photo" style="background-image: url('images/images-1.jpg')">
+                            <p>user profile image</p>
+                        </div>
                         <div class="content">
                             <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
                                 dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
@@ -222,47 +228,48 @@
         <!-- Content -->
         <div class="sns-center col-md-6">
             <div class="posts">
-                <ul>
-                    <li class="col-md-6">
-                        <div>
-                            <img src="images/FullSizeRender 10.jpg">
-                            <div class="title">Lorem ipsum dolor sit amet
+                <ul class="items">
+
+                    <li class="item" ng-repeat="list in snsList track by $index">
+                        <div class="image" style="background-image: url('{{list.item.image}}')">
+                            <p>title '{{list.item.title}}' for background image</p>
+                        </div>
+                        <div class="content">
+                            <div class="user-photo" style="background-image: url('{{list.user.photo}}')">
+                                <p>{{list.user.name}} profile image</p>
                             </div>
-                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
-                            </div>
+                            <h5>{{list.item.title}}<span>- {{ list.item.date | elapsedTimeFilter}} 전</span></h5>
+                            <div class="text">{{list.item.content}}</div>
+                        </div>
+                        <div class="feed">
+                            <ul>
+                                <li><a class="view" ng-style="{ color : ( list.feed.views | countStyleCheck )}">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                    <span class="count">{{list.feed.views}}</span></a></li>
+                                <li><a class="like" ng-style="{ color : (list.feed.likes | countStyleCheck )}">
+                                    <span class="glyphicon glyphicon-thumbs-up"></span>
+                                    <span class="count">{{list.feed.likes}}</span></a></li>
+                                <li><a class="comment" ng-style="{ color : (list.feed.comments | countStyleCheck )}">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                    <span class="count">{{list.feed.comments}}</span></a></li>
+                                <li><a class="pin" ng-style="{ color : (list.feed.pin | countStyleCheck )}">
+                                    <span class="glyphicon glyphicon-pushpin"></span>
+                                    <span class="count">{{list.feed.pin}}</span></a>
+                                </li>
+                                <li><a class="bookmark" ng-style="{ color : (list.feed.bookmark | countStyleCheck )}">
+                                    <span class="glyphicon glyphicon-bookmark"></span>
+                                    <span class="count">{{list.feed.bookmark}}</span></a></li>
+                            </ul>
+                            <a class="moreBtn">more<span class="glyphicon glyphicon-triangle-right"></span></a>
                         </div>
                     </li>
-                    <li class="col-md-6">
-                        <div>
-                            <img src="images/IMG_6163.jpg">
-                            <div class="title">Lorem ipsum dolor sit amet</div>
-                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-md-6">
-                        <div>
-                            <img src="images/IMG_3265.jpg">
-                            <div class="title">Lorem ipsum dolor sit amet</div>
-                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
-                            </div>
-                        </div>
-                    </li>
-                    <li class="col-md-6">
-                        <div>
-                            <img src="images/IMG_0105.jpg">
-                            <div class="title">Lorem ipsum dolor sit amet</div>
-                            <div class="content">Lorem ipsum dolor sit amet, qui ullum latine similique cu, ex purto ullamcorper his.
-                            </div>
-                        </div>
-                    </li>
+
                 </ul>
             </div>
 
-
+            <button ng-click="shuffle()">shuffle</button>
         </div>
         <!-- //. Content -->
-
 
     </div>
 </div>
