@@ -2,7 +2,6 @@
     <span class="glyphicon glyphicon-home"></span>
 </a>
 
-
 <div class="sns-bg">
     <div class="sns-nav-bar">
         <div class="container">
@@ -25,9 +24,8 @@
     </div>
 
     <div class="container sns-container">
-        <!-- Sidebar -->
+        <!-- Left Sidebar -->
         <div class="sns-sidebar col-md-3">
-
             <div class="my-profile">
                 <div class="my-info">
                     <a class="bg-change-btn" ng-click="targetBg = !targetBg"><span
@@ -49,7 +47,7 @@
                             <div class="fileUpload btn">
                                 <span>Upload</span>
                                 <input type="file" class="upload"
-                                       onchange="angular.element(this).scope().changeIma(this , 'my-photo')"/>
+                                       onchange="angular.element(this).scope().changeImg(this , 'my-photo')"/>
                             </div>
                         </div>
                     </div>
@@ -84,17 +82,41 @@
                     <a class="simple-write-control" ng-if="!controlOn" ng-click="closeSimpleWrite()">‣</a>
                 </div>
                 <div class="simple-write-content">
-                    <textarea ng-model="postContent" class="form-control"></textarea>
+                    <input ng-model="postContent.title" type="text" class="form-control">
+                    <textarea ng-model="postContent.content" class="form-control"></textarea>
                     <div>
                         <ul class="write-item">
-                            <li><a><span class="glyphicon glyphicon-picture"></span></a></li>
-                            <li><a><span class="glyphicon glyphicon-facetime-video"></span></a></li>
-                            <li><a><span class="glyphicon glyphicon-user"></span></a></li>
-                            <li><a><span class="glyphicon glyphicon-map-marker"></span></a></li>
-                            <li class="sendBtn"><a
-                                    ng-style="{'background' : postContent.length > 0? '#7ACCBE' : '#DDD' }"><span
-                                    class="glyphicon glyphicon-ok"></span></a></li>
+                            <li ng-style="{color: postContent.image ? '#FF5879' : '#666'}">
+                                <span class="glyphicon glyphicon-picture"></span>
+                                <input type="file" onchange="angular.element(this).scope().uploadImage(this)" multiple />
+                            </li>
+                            <li>
+                                <a data-toggle="modal" data-target=".uploadVideoModal"><span class="glyphicon glyphicon-facetime-video"></span></a>
+                            </li>
+                            <li>
+                                <span class="glyphicon glyphicon-user"></span>
+                            </li>
+                            <!--<li class="glyphicon glyphicon-map-marker"></li>-->
+                            <li class="sendBtn">
+                                <a ng-style="{'background' : (postContent.content.length > 0 && postContent.title.length > 0)? '#7ACCBE' : '#DDD' }"><span class="glyphicon glyphicon-ok"></span></a></li>
                         </ul>
+                    </div>
+
+                    <div class="image" ng-if="postContent.image" style="background-image:url('{{postContent.image}}')">
+                        <p>Upload image : {{postContent.imageName}}</p>
+                        <a class="cancel" ng-click="cancelImage()">✕</a>
+                    </div>
+                    <div class="video" ng-if="postContent.video">sdjlaskd</div>
+                    <div class="user">sdjlaskd</div>
+                    <div class="marker">sdjlaskd</div>
+                </div>
+            </div>
+
+            <!-- Upload Video Modal-->
+            <div class="modal fade uploadVideoModal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        ...
                     </div>
                 </div>
             </div>
@@ -125,46 +147,14 @@
             </div>
 
             <div class="recommend">
-                Recommend <a class="repeat-list"><span class="glyphicon glyphicon-repeat"></span></a>
+                Recommend <a class="repeat-list" ng-click="recommendUser()"><span class="glyphicon glyphicon-repeat"></span></a>
                 <ul>
-                    <li>
-                        <div class="photo" style="background-image: url('images/images.jpg')">
-                            <p>user profile image</p>
+                    <li ng-repeat="list in recommend">
+                        <div class="photo" style="background-image: url('{{list.user.photo}}')">
+                            <p>{{list.user.name}} profile image</p>
                         </div>
                         <div class="content">
-                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
-                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
-                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
-                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
-                            </div>
-                        </div>
-                        <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
-                    </li>
-
-                    <li>
-                        <div class="photo" style="background-image: url('images/imgres.jpg')">
-                            <p>user profile image</p>
-                        </div>
-                        <div class="content">
-                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
-                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
-                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
-                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
-                            </div>
-                        </div>
-                        <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
-                    </li>
-
-                    <li>
-                        <div class="photo" style="background-image: url('images/images-1.jpg')">
-                            <p>user profile image</p>
-                        </div>
-                        <div class="content">
-                            <div class="text">Lorem ipsum dolor sit amet, vivendo vituperata nam ei, te stet unum
-                                dolorem vis, an vim paulo menandri gloriatur. Legendos delicatissimi ei pri, expetendis
-                                reformidans eos ad, pri inimicus repudiare in. Qui ea rebum assueverit voluptatibus, sed
-                                mutat invenire an, qui nibh regione tincidunt eu. Meis aperiam detracto ut eam.
-                            </div>
+                            <div class="text">{{list.title}}</div>
                         </div>
                         <button class="moreBtn btn">더보기<span class="glyphicon glyphicon-triangle-right"></span></button>
                     </li>
@@ -172,62 +162,42 @@
             </div>
 
             <div class="popularity">
-                Popularity <a class="repeat-list"><span class="glyphicon glyphicon-repeat"></span></a>
+                Popularity <a class="repeat-list" ng-click="popularityList();"><span class="glyphicon glyphicon-repeat"></span></a>
 
 
                 <div id="popularCarousel" class="carousel slide" data-ride="carousel">
+
+                    <div class="loading">
+                        Loading ...
+                    </div>
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <li data-target="#popularCarousel" data-slide-to="0" class="active"></li>
                         <li data-target="#popularCarousel" data-slide-to="1"></li>
                         <li data-target="#popularCarousel" data-slide-to="2"></li>
+                        <li data-target="#popularCarousel" data-slide-to="3"></li>
+                        <li data-target="#popularCarousel" data-slide-to="4"></li>
                     </ol>
 
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
-                        <div class="item active">
-                            <img src="images/IMG_7882.jpg" alt="IMG_7882">
+                        <div class="item" ng-class="{active:!$index}" ng-repeat="list in popularity">
+                            <img src="{{list.item.image}}" alt="{{list.item.image}}">
                             <div class="title">
-                                <div>
-                                    Lorem ipsum dolor sit amet, has tollit equidem an. Natum putent eloquentiam ut pri,
-                                    ius feugait detraxit ea, ut vel summo luptatum. Ne facer mentitum ius, exerci
-                                    liberavisse ne nec, cum quem quot impedit id. Libris noster nominati ei quo. Accusam
-                                    consequuntur vix no, nam velit denique singulis no. Altera interesset liberavisse
-                                    nam in.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="images/IMG_8271.jpg" alt="IMG_8271">
-                            <div class="title">
-                                <div>
-                                    Lorem ipsum dolor sit amet, has tollit equidem an. Natum putent eloquentiam ut pri,
-                                    ius feugait detraxit ea, ut vel summo luptatum. Ne facer mentitum ius, exerci
-                                    liberavisse ne nec, cum quem quot impedit id. Libris noster nominati ei quo. Accusam
-                                    consequuntur vix no, nam velit denique singulis no. Altera interesset liberavisse
-                                    nam in.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="item">
-                            <img src="images/IMG_8381.jpg" alt="IMG_8381">
-                            <div class="title">
-                                <div>
-                                    Lorem ipsum dolor sit amet, has tollit equidem an.
-                                </div>
+                                <div>{{list.item.title}}</div>
                             </div>
                         </div>
                     </div>
+
+
                 </div>
             </div>
         </div>
-        <!-- //. Sidebar -->
+        <!-- //. Left Sidebar -->
 
         <!-- Content -->
         <div class="sns-center col-md-6">
-            <div class="posts">
+            <div class="posts" infinite-scroll>
                 <ul class="items">
 
                     <li class="item" ng-repeat="list in snsList track by $index">
@@ -238,6 +208,7 @@
                             <div class="user-photo" style="background-image: url('{{list.user.photo}}')">
                                 <p>{{list.user.name}} profile image</p>
                             </div>
+                            <div class="user-name"><h4>{{list.user.name}}</h4></div>
                             <h5>{{list.item.title}}<span>- {{ list.item.date | elapsedTimeFilter}} 전</span></h5>
                             <div class="text">{{list.item.content}}</div>
                         </div>
@@ -267,9 +238,37 @@
                 </ul>
             </div>
 
-            <button ng-click="shuffle()">shuffle</button>
+            <div class="loading">Loading ... </div>
         </div>
         <!-- //. Content -->
+
+        <!-- Right Sidebar-->
+        <div class="sns-right-sidebar col-md-3">
+            <div class="fixedSponsored">
+                <div class="sponsored">
+                    <div>Sponsored</div>
+                </div>
+
+                <div class="sponsor-list">
+                    <ul>
+                        <li class="default">
+                            <img alt="sponsor image">
+                            <h5>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h5>
+                            <p>Proin sit amet massa ante. Proin cursus ligula augue, ut bibendum ante ullamcorper vitae.</p>
+                        </li>
+
+                        <li class="choose1">
+                            <img alt="sponsor image">
+                            <h5 class="title">Mauris interdum est non enim feugiat, ut dignissim quam maximus.</h5>
+                        </li>
+                    </ul>
+                </div>
+                <div class="copyright">
+                    copyright ⓒ 2016 <a href="http://semjok.com" target="_blank">SEMJOK</a><br />All Rights Reserved
+                </div>
+            </div>
+        </div>
+        <!-- //. Right Sidebar-->
 
     </div>
 </div>

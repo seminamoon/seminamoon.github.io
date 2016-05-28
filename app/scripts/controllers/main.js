@@ -8,6 +8,9 @@
  * Controller of the portfolioApp
  */
 angular.module('portfolioApp')
-  .controller('MainCtrl', function () {
-    
-  });
+    .controller('MainCtrl', function () {
+
+        
+
+
+    });

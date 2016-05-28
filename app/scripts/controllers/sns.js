@@ -11,104 +11,225 @@
  * Controller of the portfolioApp
  */
 angular.module('portfolioApp')
-    .controller('SnsCtrl', function ($scope, commonUtil, randomData) {
+    .controller('SnsCtrl', function ($scope, $timeout, commonUtil, randomData) {
+
         $scope.searchKeyword = '';
         $scope.searchBar = false;
-        $scope.searchClick = function(){
+        $scope.searchClick = function () {
             $scope.searchBar = !$scope.searchBar;
             $('.sns-search-keyword').animate({width: 'toggle'});
         };
 
-        $('.my-photo').hover(
-            function(){
-                $('.photo-change-btn').fadeIn().css('display','block');
-            },
-            function(){
-                $('.photo-change-btn').css('display','none');
-            }
-        );
 
+        // 유저 배경 또는 사진 변경
         $scope.targetBg = false;
         $scope.targetPhoto = false;
-        $scope.changeImg = function(input, target){
+        $scope.changeImg = function (input, target) {
             commonUtil.changeMyPfBg(input, target);
-            if(target == 'my-info'){
+            if (target == 'my-info') {
                 $('.bg-change-btn').click();
-            }else{
+            } else {
                 $('.photo-change-btn').click();
             }
         };
+        // 유저사진 변경을 위한 hover event
+        $('.my-photo').hover(
+            function () {
+                $('.photo-change-btn').fadeIn().css('display', 'block');
+            },
+            function () {
+                $('.photo-change-btn').css('display', 'none');
+            }
+        );
 
+
+        // 새로운 글을 작성합니다.
+        $scope.postContent = {};
+        // 이미지를 업로드합니다.
+        $scope.uploadImage = function(input){
+            if (input.files && input.files[0]) { // 파일 유효성 검사
+                if( /\.(jpe?g|png|gif)$/i.test(input.files[0].name)){ // 확장자 검사
+                    $scope.postContent.imageName = input.files[0].name;
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $scope.$apply(function($scope){
+                            $scope.postContent.image =  e.target.result;
+                        });
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }else{
+                    console.log('아니다');
+                }
+            }
+        };
+        // 업로드한 이미지를 삭제합니다
+        $scope.cancelImage = function(){
+            delete $scope.postContent.image;
+            delete $scope.postContent.imageName;
+        };
+        
+        
+        
         $scope.controlOn = true;
-        $scope.closeSimpleWrite = function() {
+        $scope.closeSimpleWrite = function () {
             $scope.controlOn = !$scope.controlOn;
             $('.simple-write-content').animate({height: 'toggle'});
         };
 
-        $scope.snsList = [];
-        var secondMinusCount = -10;
-        $scope.shuffle = function(){
+        // 추천유저 랜덤 생성
+        $scope.recommendUser = function(){
+            $scope.recommend = [];
+            var users = randomData.users;
+            var titles = randomData.title;
+            for(var i = 0; i < 3; i++){
+                var obj = {};
+                obj.user = users[Math.floor(Math.random() * users.length)];
+                obj.title = titles[Math.floor(Math.random() * titles.length)];
+                $scope.recommend.push(obj);
+            }
+        };
+        $scope.recommendUser();
+
+        // 인기게시글 랜덤 생성
+        $scope.popularityList = function(){
+            $scope.popularity = [];
+            $('.popularity #popularCarousel .loading').show();
+            $('.popularity #popularCarousel .carousel-inner').hide();
+            $('.popularity #popularCarousel .carousel-indicators').hide();
+            var array = [];
             var users = randomData.users;
             var titles = randomData.title;
             var contents = randomData.content;
             var images = randomData.images;
             for(var i = 0; i < 5; i++){
                 var obj = {
-                    item: {},
-                    feed : {}
+                    item : []
                 };
                 obj.user = users[Math.floor(Math.random() * users.length)];
                 obj.item = {
-                    title : titles[Math.floor(Math.random() * titles.length)],
-                    content : contents[Math.floor(Math.random() * contents.length)],
-                    image : images[Math.floor(Math.random() * images.length)],
-                    date : moment().second(secondMinusCount).format('YYYY-MM-DD HH:mm:ss')
+                    title: titles[Math.floor(Math.random() * titles.length)],
+                    content: contents[Math.floor(Math.random() * contents.length)],
+                    image: images[Math.floor(Math.random() * images.length)]
                 };
-                obj.feed.views = (Math.floor(Math.random() * 400));
-                obj.feed.likes = (Math.floor(Math.random() *  obj.feed.views ));
-                obj.feed.comments = (Math.floor(Math.random() * obj.feed.likes ));
-                obj.feed.pin = (Math.floor(Math.random() * obj.feed.comments ));
-                obj.feed.bookmark = (Math.floor(Math.random() * obj.feed.comments ));
+                array.push(obj);
+            }
+            $timeout(function(){
+                $scope.popularity = array;
+                $('.popularity #popularCarousel .loading').hide();
+                $('.popularity #popularCarousel .carousel-inner').show();
+                $('.popularity #popularCarousel .carousel-indicators').show();
+            }, 1000);
+        };
+        $scope.popularityList();
+
+        // 게시글 랜덤생성
+        $scope.snsList = [];
+        var secondMinusCount = -10;
+        var loadingContent = function () {
+            var users = randomData.users;
+            var titles = randomData.title;
+            var contents = randomData.content;
+            var images = randomData.images;
+            for (var i = 0; i < 5; i++) {
+                var obj = {
+                    item: {},
+                    feed: {}
+                };
+                obj.user = users[Math.floor(Math.random() * users.length)];
+                obj.item = {
+                    title: titles[Math.floor(Math.random() * titles.length)],
+                    content: contents[Math.floor(Math.random() * contents.length)],
+                    image: images[Math.floor(Math.random() * images.length)],
+                    date: moment().second(secondMinusCount).format('YYYY-MM-DD HH:mm:ss')
+                };
+                obj.feed.views = (Math.floor(Math.random() * 300));
+                obj.feed.likes = (Math.floor(Math.random() * obj.feed.views));
+                obj.feed.comments = (Math.floor(Math.random() * obj.feed.likes));
+                obj.feed.pin = (Math.floor(Math.random() * obj.feed.comments));
+                obj.feed.bookmark = (Math.floor(Math.random() * obj.feed.comments));
                 secondMinusCount -= (Math.floor(Math.random() * 1000));
                 $scope.snsList.push(obj);
             }
         };
-        $scope.shuffle();
-        
+        loadingContent();
+
+        // 윈도우 사이즈 변경시 CSS 변경
+        $(window).resize(function(){
+            var sidebarHeight = $('.sns-sidebar').height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+            var bodyWidth = $('body').width();
+            if(bodyWidth < 977){
+                $('.sns-sidebar').removeClass('sns-sidebar-scroll');
+                $('.sns-center').removeClass('sns-center-scroll');
+            }else{
+                if(scrollPosition - sidebarHeight > 50 ){
+                    $('.sns-sidebar').addClass('sns-sidebar-scroll');
+                    $('.sns-center').addClass('sns-center-scroll');
+                }else{
+                    $('.sns-sidebar').removeClass('sns-sidebar-scroll');
+                    $('.sns-center').removeClass('sns-center-scroll');
+                }
+            }
+        });
+
+        // Scroll Up or Down 시 왼쪽 sidebar 고정 CSS 변경
+        $(window).scroll(function() {
+            var scrollHeight = $('body').height();
+            var scrollPosition = $(window).height() + $(window).scrollTop();
+
+            var result = scrollHeight - scrollPosition;
+            if (result < 10) {
+                // Loading Content
+                loadingContent();
+            }
+            var sidebarHeight = $('.sns-sidebar').height();
+            var bodyWidth = $('body').width();
+            if(bodyWidth > 976){
+                if(scrollPosition - sidebarHeight > 50 ){
+                    $('.sns-sidebar').addClass('sns-sidebar-scroll');
+                    $('.sns-center').addClass('sns-center-scroll');
+                }else{
+                    $('.sns-sidebar').removeClass('sns-sidebar-scroll');
+                    $('.sns-center').removeClass('sns-center-scroll');
+                }
+            }
+
+        });
+
     })
     .value('randomData',
         {
-            users :[
+            users: [
                 {
-                    name : 'Robert Downey Jr',
-                    photo : 'images/Robert-Downey-Jr.jpg'
+                    name: 'Robert Downey Jr',
+                    photo: 'images/Robert-Downey-Jr.jpg'
                 },
                 {
-                    name : 'Chorong-Chorong',
-                    photo : 'images/images.jpg'
+                    name: 'Chorong-Chorong',
+                    photo: 'images/images.jpg'
                 },
                 {
-                    name : 'Song JK',
-                    photo : 'images/images-1.jpg'
+                    name: 'Song JK',
+                    photo: 'images/images-1.jpg'
                 },
                 {
-                    name : 'IU',
-                    photo : 'images/imgres.jpg'
+                    name: 'IU',
+                    photo: 'images/imgres.jpg'
                 },
                 {
-                    name : 'MJ',
-                    photo : 'images/minjung.jpg'
+                    name: 'MJ',
+                    photo: 'images/minjung.jpg'
                 },
                 {
-                    name : 'Su-jin',
-                    photo : 'images/sujin.jpg'
+                    name: 'Su-jin',
+                    photo: 'images/sujin.jpg'
                 },
                 {
-                    name : 'Boyoung Park',
-                    photo : 'images/boyoung.jpg'
+                    name: 'Boyoung Park',
+                    photo: 'images/boyoung.jpg'
                 }
             ],
-            title : [
+            title: [
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
                 'Mauris interdum est non enim feugiat, ut dignissim quam maximus.',
                 'Donec tristique neque dolor, nec volutpat justo fringilla sed.',
@@ -131,7 +252,7 @@ angular.module('portfolioApp')
                 'Nunc elementum nunc eget libero scelerisque malesuada.',
                 'Aliquam interdum bibendum sodales.'
             ],
-            content : [
+            content: [
                 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris interdum est non enim feugiat, ut dignissim quam maximus. Donec tristique neque dolor, nec volutpat justo fringilla sed. Donec laoreet ipsum et aliquet tempor. Integer quis purus cursus, ornare metus sit amet, venenatis enim. Integer dapibus nec enim a tincidunt. Integer sit amet sollicitudin neque. Praesent turpis dolor, convallis vitae purus eu, semper accumsan metus. Curabitur cursus convallis sem, id tincidunt turpis fringilla ut. Proin tempus ornare lobortis. Nunc tempor dictum erat, interdum viverra metus lobortis sit amet.',
                 'Proin sit amet massa ante. Proin cursus ligula augue, ut bibendum ante ullamcorper vitae. Quisque vulputate magna et tellus malesuada imperdiet. Nullam ipsum nunc, efficitur a sapien malesuada, pharetra bibendum metus. Quisque facilisis condimentum malesuada. Quisque in porta nisl. Fusce mollis libero leo. Duis risus urna, lobortis vitae tempor in, pretium nec tortor. Nunc faucibus diam sollicitudin est posuere eleifend. Nunc elementum nunc eget libero scelerisque malesuada. Aliquam interdum bibendum sodales.',
                 'Nullam lectus mauris, congue et enim eget, pellentesque tincidunt libero. Curabitur commodo dui eu sem finibus pretium. Quisque ligula risus, laoreet id nulla vitae, laoreet mattis purus. Maecenas venenatis nulla elit, a accumsan dolor faucibus sed. Ut vel euismod libero, eu tempor leo. Integer mauris nisi, lobortis at tempus vel, lobortis vel ante. Nam efficitur, dui vel posuere tincidunt, nunc ante consectetur libero, at semper justo quam vel sapien. Vestibulum suscipit turpis nec erat hendrerit consequat. Cras ornare consequat ligula at tincidunt. Duis et lectus vehicula, tincidunt eros eget, laoreet justo. Sed vel nisl aliquet, bibendum ligula vel, fermentum mi.',
@@ -148,7 +269,7 @@ angular.module('portfolioApp')
                 'Fusce mollis libero leo. Duis risus urna, lobortis vitae tempor in, pretium nec tortor.',
                 'Nunc faucibus diam sollicitudin est posuere eleifend. Nunc elementum nunc eget libero scelerisque malesuada. Aliquam interdum bibendum sodales.'
             ],
-            images : [
+            images: [
                 'images/IMG_0019.jpg',
                 'images/IMG_0105.jpg',
                 'images/IMG_2080.jpg',
